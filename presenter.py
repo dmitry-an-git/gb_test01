@@ -12,17 +12,17 @@ class Presenter:
         self.notebook.add(Note(title, body))
 
     def modify(self):
-        id = int(input('Enter note ID: '))
+        id = int(input('Enter note ID to modify: '))
         title = input('Enter new title (or leave blank to keep the old one): ')
         body = input('Enter new body (or leave blank to keep the old one): ')
         self.notebook.modify(id, title, body)
 
     def remove(self):
-        id = int(input('Enter note ID: '))
+        id = int(input('Enter note ID to remove: '))
         self.notebook.remove(id)
 
     def display(self):
-        id = int(input('Enter note ID: '))
+        id = int(input('Enter note ID to display: '))
         note = self.notebook.get(id)
         print(note)
 

@@ -27,7 +27,8 @@ class Notebook:
         for note in self.notes:
             if note.note_id == id:
                 note.modify(title, body)
-        self.save()
+                self.save()
+            else: print("Wrong id!")
 
     def remove(self, id):
         self.notes = [note for note in self.notes if note.note_id != id]
