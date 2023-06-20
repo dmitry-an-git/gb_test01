@@ -12,17 +12,17 @@ class Presenter:
         self.notebook.add(Note(title, body))
 
     def modify(self):
-        id = int(input('Enter note ID to modify: '))
+        id = self.enter_id('Enter note ID to modify: ')
         title = input('Enter new title (or leave blank to keep the old one): ')
         body = input('Enter new body (or leave blank to keep the old one): ')
         self.notebook.modify(id, title, body)
 
     def remove(self):
-        id = int(input('Enter note ID to remove: '))
+        id = self.enter_id('Enter note ID to remove: ')
         self.notebook.remove(id)
 
     def display(self):
-        id = int(input('Enter note ID to display: '))
+        id = self.enter_id('Enter note ID to display: ')
         note = self.notebook.get(id)
         print(note)
 
@@ -35,3 +35,11 @@ class Presenter:
         date = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
         for note in self.notebook.find_by_date(date):
             print(note)
+
+    def enter_id(self, msg):
+        id = input(msg)
+        if id.isdigit():
+            return int(id)
+        else: 
+            print('Wrong ID!')
+            self.enter_id(msg)

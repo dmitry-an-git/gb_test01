@@ -14,8 +14,8 @@ class Notebook:
                     id, title, body, created_at, last_modified = row
                     note = Note(title, body)
                     note.note_id = int(id)
-                    note.created_at = datetime.datetime.strptime(created_at, "%Y-%m-%d %H:%M:%S.%f")
-                    note.last_modified = datetime.datetime.strptime(last_modified, "%Y-%m-%d %H:%M:%S.%f")
+                    note.created_at = datetime.datetime.strptime(created_at, "%Y-%m-%d %H:%M:%S")
+                    note.last_modified = datetime.datetime.strptime(last_modified, "%Y-%m-%d %H:%M:%S")
                     self.notes.append(note)
                     Note._id = max(Note._id, note.note_id + 1)
 
@@ -28,7 +28,7 @@ class Notebook:
             if note.note_id == id:
                 note.modify(title, body)
                 self.save()
-            else: print("Wrong id!")
+            else: print('Wrong ID!')
 
     def remove(self, id):
         self.notes = [note for note in self.notes if note.note_id != id]
@@ -50,4 +50,6 @@ class Notebook:
         with open(self.filename, 'w') as file:
             writer = csv.writer(file)
             for note in self.notes:
-                writer.writerow([note.note_id, note.title, note.body, note.created_at, note.last_modified])
+                writer.writerow([note.note_id, note.title, note.body, 
+                                 note.created_at.strftime('%Y-%m-%d %H:%M:%S'), 
+                                 note.last_modified.strftime('%Y-%m-%d %H:%M:%S')])
