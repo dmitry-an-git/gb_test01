@@ -6,6 +6,8 @@ def start():
     global continue_loop 
     continue_loop = True
 
+    print('*** Super app for notes 1.0 ***\n')
+
     def stop_loop():
         global continue_loop
         continue_loop = False
